@@ -1,0 +1,19 @@
+name: ${PROJECT_NAME}
+ 
+services:
+  app:
+    image: "${IMAGE_REPO}:${IMAGE_TAG}"
+    ports:
+      - "${HOST_PORT}:${CONTAINER_PORT}"
+    restart: always
+    container_name: ${CONTAINER_NAME}
+    networks:
+      - container-network
+
+networks:
+  container-network:
+    driver: bridge
+    name: ${NETWORK_NAME}
+    ipam:
+      config:
+        - subnet: ${SUBNET}
