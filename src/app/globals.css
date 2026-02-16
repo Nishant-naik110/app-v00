@@ -41,51 +41,51 @@ body {
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 306, 82%, 35%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 274, 100%, 29%;
-    --secondary-foreground: 240 5.9% 10%;
+    --primary: 288, 100%, 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180, 90%, 45%;
+    --secondary-foreground: 0 0% 100%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --accent: 48, 100%, 55%;
+    --accent-foreground: 240 10% 3.9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --ring: 288 100% 50%;
+    --chart-1: 288 100% 50%;
+    --chart-2: 180 90% 45%;
+    --chart-3: 48 100% 55%;
+    --chart-4: 340 75% 55%;
+    --chart-5: 270 80% 52%;
     --radius: 0.5rem;
   }
   .dark {
-    --background: 215.3,25%,26.7%;
+    --background: 260 30% 12%;
     --foreground: 0 0% 98%;
-    --card: 221, 39%, 11%;
+    --card: 260 35% 18%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 260 35% 18%;
     --popover-foreground: 0 0% 98%;
-    --primary: 306, 82%, 35%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
+    --primary: 288, 100%, 55%;
+    --primary-foreground: 260 30% 12%;
+    --secondary: 180, 90%, 48%;
+    --secondary-foreground: 260 30% 12%;
+    --muted: 260 20% 30%;
     --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --accent: 48, 100%, 58%;
+    --accent-foreground: 260 30% 12%;
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --border: 260 20% 30%;
+    --input: 260 20% 30%;
+    --ring: 288 100% 55%;
+    --chart-1: 288 100% 55%;
+    --chart-2: 180 90% 48%;
+    --chart-3: 48 100% 58%;
+    --chart-4: 340 75% 60%;
+    --chart-5: 270 85% 58%;
   }
 }
 
@@ -98,7 +98,7 @@ body {
   }
 }
 
-/* Modern Dashboard Enhancements */
+/* Vibrant Dashboard Enhancements */
 @layer utilities {
   /* Smooth scrolling for the entire page */
   * {
@@ -150,6 +150,28 @@ body {
     }
   }
 
+  /* Vibrant gradient animations */
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes glowPulse {
+    0%, 100% {
+      box-shadow: 0 0 10px rgba(144, 0, 255, 0.3), 0 0 20px rgba(0, 200, 200, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(144, 0, 255, 0.6), 0 0 40px rgba(0, 200, 200, 0.4);
+    }
+  }
+
   /* Area Chart Skeleton Animations */
   @keyframes areaWave {
     0%, 100% {
@@ -182,15 +204,18 @@ body {
     }
   }
 
-  @keyframes gradientWave {
+  @keyframes colorCycle {
     0% {
-      stop-opacity: 0.2;
+      filter: hue-rotate(0deg);
     }
-    50% {
-      stop-opacity: 0.4;
+    33% {
+      filter: hue-rotate(120deg);
+    }
+    66% {
+      filter: hue-rotate(240deg);
     }
     100% {
-      stop-opacity: 0.2;
+      filter: hue-rotate(360deg);
     }
   }
 
@@ -206,37 +231,87 @@ body {
     animation: pointFloat 2s ease-in-out infinite;
   }
 
-  /* Glassmorphism effect */
+  .animate-glow-pulse {
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  .animate-color-cycle {
+    animation: colorCycle 6s linear infinite;
+  }
+
+  /* Vibrant gradient effect */
+  .vibrant-gradient {
+    background: linear-gradient(-45deg, 
+      hsl(288, 100%, 50%), 
+      hsl(180, 90%, 45%),
+      hsl(48, 100%, 55%),
+      hsl(288, 100%, 50%));
+    background-size: 300% 300%;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  /* Glassmorphism effect with vibrant colors */
   .glass-effect {
     backdrop-filter: blur(12px);
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(144, 0, 255, 0.1);
+    border: 1px solid rgba(0, 200, 200, 0.2);
   }
 
   .dark .glass-effect {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(144, 0, 255, 0.15);
+    border: 1px solid rgba(0, 200, 200, 0.3);
   }
 
   /* Smooth transitions for all interactive elements */
   button, a, input, select {
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
-  /* Custom gradient text */
+  /* Custom vibrant gradient text */
   .gradient-text {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    background: linear-gradient(135deg, 
+      hsl(288, 100%, 50%) 0%,
+      hsl(180, 90%, 45%) 50%,
+      hsl(48, 100%, 55%) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: gradientShift 6s ease infinite;
+    background-size: 200% 200%;
   }
 
-  /* Hover lift effect */
+  /* Enhanced hover lift with glow */
   .hover-lift {
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
   }
 
   .hover-lift:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(144, 0, 255, 0.3), 0 0 20px rgba(0, 200, 200, 0.2);
+  }
+
+  /* Neon effect */
+  .neon-effect {
+    text-shadow: 0 0 10px hsl(288, 100%, 50%), 0 0 20px hsl(180, 90%, 45%);
+    box-shadow: 0 0 15px hsl(288, 100%, 50%), 0 0 30px hsl(180, 90%, 45%), inset 0 0 15px rgba(144, 0, 255, 0.1);
+  }
+
+  /* Vibrant card styling */
+  .vibrant-card {
+    background: linear-gradient(135deg, 
+      rgba(144, 0, 255, 0.1) 0%,
+      rgba(0, 200, 200, 0.05) 100%);
+    border: 1px solid rgba(144, 0, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(144, 0, 255, 0.1), 0 0 20px rgba(0, 200, 200, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .dark .vibrant-card {
+    background: linear-gradient(135deg, 
+      rgba(144, 0, 255, 0.15) 0%,
+      rgba(0, 200, 200, 0.08) 100%);
+    border: 1px solid rgba(144, 0, 255, 0.4);
+    box-shadow: 0 8px 32px rgba(144, 0, 255, 0.15), 0 0 25px rgba(0, 200, 200, 0.15);
   }
 }
 
