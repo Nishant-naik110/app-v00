@@ -655,16 +655,24 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-2 w-full">
-        {/* Filters Row + Toggle */}
-        <div className="sticky top-0 z-50 dark:bg-card bg-white border border-border/40 rounded-xl shadow-lg mt-2">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-2 p-2 sm:p-2">
+      <div className="flex flex-col gap-4 w-full px-2 sm:px-4 py-4">
+        {/* Header Section - Modern Title Bar */}
+        <div className="mb-4">
+          <h1 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent mb-2">
+            Dashboard Overview
+          </h1>
+          <p className="text-muted-foreground text-sm sm:text-base">Real-time analytics and insights for your platform</p>
+        </div>
+
+        {/* Filters Row + Toggle - Enhanced Modern Design */}
+        <div className="sticky top-0 z-50 vibrant-card rounded-2xl shadow-lg">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 p-4 sm:p-5">
             {/* Mobile Filter Button */}
-            <div className="lg:hidden w-full flex justify-between items-center">
+            <div className="lg:hidden w-full flex justify-between items-center gap-2">
               <Button
                 variant="outline"
                 onClick={() => setIsMobileFilterOpen(true)}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 hover-lift"
               >
                 <FilterIcon className="w-4 h-4" />
                 <span>Filters</span>
@@ -695,7 +703,7 @@ const Dashboard = () => {
             </div>
 
             {/* Desktop Filters */}
-            <div className="hidden lg:flex items-center gap-2 w-full">
+            <div className="hidden lg:flex items-center gap-4 w-full">
               <div className="shrink-0">
                 <Filter
                   key={`publishers-${selectedType}-${selectedPackage}-${startDate}-${endDate}`}
@@ -756,29 +764,46 @@ const Dashboard = () => {
           publisherGroups={{ Publishers: publishersData || {} }}
         />
 
-        <StatsCards
-          data={totalPercentageData || {}}
-          customLabels={{
-            Total: `Total ${selectedType === "click" ? "Clicks" : "Impressions"}`,
-            Valid: `Valid ${selectedType === "click" ? "Clicks" : "Impressions"}`,
-            Invalid: `Invalid ${selectedType === "click" ? "Clicks" : "Impressions"}`,
-          }}
-            icons={{
-                        Total: selectedType === "click" ? MousePointerClick : Eye,
-                        Valid: CheckCircle2,
-                        Invalid: TriangleAlert,
-                      }}
-          isLoading={isStatsLoading}
-        />
+        {/* Spacer */}
+        <div className="h-1"></div>
 
-        {/* Modern Charts Grid with Better Spacing */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 w-full gap-2 transition-all duration-300">
+        {/* Stats Cards Section - With Enhanced Styling */}
+        <div className="mb-2">
+          <h2 className="text-lg font-semibold mb-3 flex items-center gap-2 text-foreground">
+            <span className="w-1 h-6 bg-gradient-to-b from-primary to-secondary rounded-full"></span>
+            Key Metrics
+          </h2>
+          <StatsCards
+            data={totalPercentageData || {}}
+            customLabels={{
+              Total: `Total ${selectedType === "click" ? "Clicks" : "Impressions"}`,
+              Valid: `Valid ${selectedType === "click" ? "Clicks" : "Impressions"}`,
+              Invalid: `Invalid ${selectedType === "click" ? "Clicks" : "Impressions"}`,
+            }}
+              icons={{
+                          Total: selectedType === "click" ? MousePointerClick : Eye,
+                          Valid: CheckCircle2,
+                          Invalid: TriangleAlert,
+                        }}
+            isLoading={isStatsLoading}
+          />
+        </div>
+
+        {/* Charts Grid - Enhanced Modern Layout */}
+        <div className="mb-2">
+          <h2 className="text-lg font-semibold mb-3 flex items-center gap-2 text-foreground">
+            <span className="w-1 h-6 bg-gradient-to-b from-secondary to-accent rounded-full"></span>
+            Analytics Overview
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 w-full gap-4 transition-all duration-300">
           {/* Donut Chart with Modern Card */}
           <div
             ref={(el) => {
               if (el) cardRefs.current["split_of_sources"] = el;
             }}
-            className="transition-all duration-300 hover:shadow-xl"
+            className="transition-all duration-300 hover:shadow-2xl hover-lift vibrant-card rounded-2xl overflow-hidden"
           >
               <DonutChart
                 chartData={splitOfSourcesChartData}
@@ -827,7 +852,7 @@ const Dashboard = () => {
             ref={(el) => {
               if (el) cardRefs.current["date_wise_trend"] = el;
             }}
-            className="lg:col-span-2 transition-all duration-300 hover:shadow-xl"
+            className="lg:col-span-2 transition-all duration-300 hover:shadow-2xl hover-lift vibrant-card rounded-2xl overflow-hidden"
           >
             <StackedBarWithLine
               chartData={dwTrendData?.data || []}
@@ -869,11 +894,18 @@ const Dashboard = () => {
         </div>
 
         {/* Publisher Wise Trend - Full Width Modern Card */}
+        <div className="mb-2">
+          <h2 className="text-lg font-semibold mb-3 flex items-center gap-2 text-foreground">
+            <span className="w-1 h-6 bg-gradient-to-b from-accent to-primary rounded-full"></span>
+            Publisher Insights
+          </h2>
+        </div>
+        
         <div
             ref={(el) => {
               if (el) cardRefs.current["publisher_vendor_trend"] = el;
             }}
-          className="w-full transition-all duration-300 hover:shadow-xl"
+          className="w-full transition-all duration-300 hover:shadow-2xl hover-lift vibrant-card rounded-2xl overflow-hidden mb-4"
           >
           <StackedBarWithLine
             chartData={publisherVendorData?.data || []}
@@ -908,7 +940,15 @@ const Dashboard = () => {
           />
         </div>
 
-        <div className="flex flex-col gap-2 w-full">
+        {/* Deep Dive Analysis Section */}
+        <div className="mb-2 mt-4">
+          <h2 className="text-lg font-semibold mb-3 flex items-center gap-2 text-foreground">
+            <span className="w-1 h-6 bg-gradient-to-b from-primary to-secondary rounded-full"></span>
+            Deep Dive Analysis
+          </h2>
+        </div>
+
+        <div className="flex flex-col gap-4 w-full">
           <LazyComponentWrapper>
             <InDepthAnomalyAnalysis
                            donutData={
@@ -971,6 +1011,13 @@ const Dashboard = () => {
         </div>
 
         {/* Analysis Insights Section */}
+        <div className="mb-2 mt-6">
+          <h2 className="text-lg font-semibold mb-3 flex items-center gap-2 text-foreground">
+            <span className="w-1 h-6 bg-gradient-to-b from-secondary to-accent rounded-full"></span>
+            Detailed Insights
+          </h2>
+        </div>
+        
         <div className="transition-all duration-300">
           <LazyComponentWrapper>
             <AnalysisInsights
@@ -982,6 +1029,14 @@ const Dashboard = () => {
               isInitialLoading={isPackageLoading}
             />
           </LazyComponentWrapper>
+        </div>
+
+        {/* Publisher Breakdown Section */}
+        <div className="mb-2 mt-6">
+          <h2 className="text-lg font-semibold mb-3 flex items-center gap-2 text-foreground">
+            <span className="w-1 h-6 bg-gradient-to-b from-accent to-primary rounded-full"></span>
+            Publisher Breakdown
+          </h2>
         </div>
 
         <div className="transition-all duration-300">

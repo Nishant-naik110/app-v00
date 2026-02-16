@@ -313,12 +313,20 @@ const StatsCards = ({
         return (
           <div key={item.key} className="flex-1 group">
             <div
-              className="relative overflow-hidden  dark:bg-card bg-white rounded-xl border border-border/40 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.02] hover:border-border/60"
+              className="relative overflow-hidden vibrant-card rounded-2xl border transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl hover-lift"
               style={{
                 height: getCardHeightStyle(),
               }}
             >
-              {/* Decorative gradient bar */}
+              {/* Animated gradient bar - Top */}
+              <div
+                className="absolute top-0 left-0 right-0 h-1 transition-all duration-300 group-hover:h-1.5"
+                style={{
+                  background: `linear-gradient(90deg, ${borderColor}, ${borderColor}80, transparent)`,
+                }}
+              />
+
+              {/* Decorative animated gradient bar - Right */}
               <div
                 className="absolute top-0 right-0 w-1.5 h-full transition-all duration-300 group-hover:w-2"
                 style={{
@@ -326,9 +334,17 @@ const StatsCards = ({
                 }}
               />
               
-              {/* Decorative background accent */}
+              {/* Decorative animated background accent */}
               <div
-                className="absolute top-0 right-0 w-24 h-24 rounded-full blur-3xl opacity-10 transition-all duration-300 group-hover:opacity-20"
+                className="absolute top-0 right-0 w-32 h-32 rounded-full blur-3xl opacity-15 transition-all duration-300 group-hover:opacity-30 animate-glow-pulse"
+                style={{
+                  background: borderColor,
+                }}
+              />
+              
+              {/* Alternative accent on bottom-left */}
+              <div
+                className="absolute bottom-0 left-0 w-24 h-24 rounded-full blur-3xl opacity-10 transition-all duration-300 group-hover:opacity-15"
                 style={{
                   background: borderColor,
                 }}
